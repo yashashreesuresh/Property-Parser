@@ -115,6 +115,16 @@ def get_phone(sentences, index=0):
             return", ".join(phone)
 
 
+# Function to get property address
+def get_property_address(sentences):
+    for index, address_sentence in enumerate(sentences):
+        address = regex_extract_property_address(address_sentence)
+        # The customer would have specified 'property' before specifying property's address
+        # Using a sliding window of size 3 with the address_sentence as the last element of the window
+        if address and "property" in " ".join(sentences[max(0, index-2): index+1]).lower().split():
+            return address
+
+
 def main(file):
     
     # Used to store the text extracted
@@ -168,7 +178,7 @@ def main(file):
         parsed_data["phone"] = get_phone(sentences)
     
     # Used to ectract property address
-    parsed_data["address"] = regex_extract_property_address(document)
+    parsed_data["address"] = get_property_address(sentences)
 
     # Used to ectract property details (beds)
     parsed_data["beds"] = regex_extract_beds(document)
