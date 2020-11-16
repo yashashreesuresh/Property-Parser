@@ -13,3 +13,7 @@ Simple python parser to extract details of the:
 ```python3 parser.py --file <html_file_location>```
 
 For example, ```python3 parser.py -f test/sample_text.html```. Sample html files can be found at [test](https://github.com/yashashreesuresh/Property-Parser/tree/master/test).
+
+
+
+Edited README.md
